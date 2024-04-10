@@ -6,9 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:virtuous_ai/app/authentication/login.dart';
 
-import 'signup_model.dart';
-export 'signup_model.dart';
-
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({super.key});
 

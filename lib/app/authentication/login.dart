@@ -1,10 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:virtuous_ai/app/authentication/signup.dart';
-
-import 'login_model.dart';
-export 'login_model.dart';
+import 'package:virtuous_ai/app/components/APIs.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
@@ -15,6 +14,48 @@ class LoginWidget extends StatefulWidget {
 
 class _LoginWidgetState extends State<LoginWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  void showErrorMessage(String errorMessage) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: const Color(0xFFF6FAD1),
+            content: Container(
+              width: double.infinity,
+              height: double.maxFinite,
+              child: Center(
+                child: Text(
+                  errorMessage,
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
+  Future<void> signInWithEmailAndPassword() async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+              child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF132A13)),
+          ));
+        });
+    try {
+      await APIs().signInWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      showErrorMessage(e.code);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,6 +139,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     child: Container(
                                       width: double.infinity,
                                       child: TextFormField(
+                                        controller: emailController,
                                         autofocus: true,
                                         autofillHints: [AutofillHints.email],
                                         obscureText: false,
@@ -158,6 +200,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     child: Container(
                                       width: double.infinity,
                                       child: TextFormField(
+                                        controller: passwordController,
                                         autofocus: true,
                                         autofillHints: const [
                                           AutofillHints.password
@@ -254,88 +297,21 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 16),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 16),
                                     child: TextButton(
-                                      onPressed: () async {
-                                        // GoRouter.of(context).prepareAuthEvent();
-
-                                        // final user =
-                                        //     await authManager.signInWithEmail(
-                                        //   context,
-                                        //   _model.emailAddressController.text,
-                                        //   _model.passwordController.text,
-                                        // );
-                                        // if (user == null) {
-                                        //   return;
-                                        // }
-
-                                        // context.goNamedAuth(
-                                        //     'null', context.mounted);
-                                      },
-                                      style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty
-                                            .resolveWith<Color>((states) => Colors
-                                                .green), // Change the background color as needed
-                                        padding: MaterialStateProperty.all(
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0, 0, 0, 0),
-                                        ),
-                                        elevation: MaterialStateProperty.all(3),
-                                        shape: MaterialStateProperty.all(
-                                          RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                          ),
-                                        ),
-                                        overlayColor: MaterialStateProperty
-                                            .resolveWith<Color>(
-                                          (states) => Colors.transparent,
-                                        ),
+                                      onPressed: signInWithEmailAndPassword,
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: const Color(
+                                            0xFF132A13), // Change the button color as needed
                                       ),
-                                      child: const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical:
-                                                12.0), // Adjust vertical padding as needed
-                                        child: Text(
-                                          'Sign In',
-                                          style: TextStyle(
-                                            fontFamily: 'Tinos',
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            letterSpacing: 0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
+                                      child: const Text(
+                                        'Sign In',
+                                        style: TextStyle(color: Colors.white),
                                       ),
-                                      // options: FFButtonOptions(
-                                      //   width: double.infinity,
-                                      //   height: 39,
-                                      //   padding: EdgeInsetsDirectional.fromSTEB(
-                                      //       0, 0, 0, 0),
-                                      //   iconPadding:
-                                      //       EdgeInsetsDirectional.fromSTEB(
-                                      //           0, 0, 0, 0),
-                                      //   color: Color(0xFF18651A),
-                                      //   textStyle: FlutterFlowTheme.of(context)
-                                      //       .titleSmall
-                                      //       .override(
-                                      //         fontFamily: 'Tinos',
-                                      //         color: Colors.white,
-                                      //         fontSize: 16,
-                                      //         letterSpacing: 0,
-                                      //         fontWeight: FontWeight.w500,
-                                      //       ),
-                                      //   elevation: 3,
-                                      //   borderSide: BorderSide(
-                                      //     color: Colors.transparent,
-                                      //     width: 1,
-                                      //   ),
-                                      //   borderRadius: BorderRadius.circular(12),
-                                      // ),
                                     ),
                                   ),
-
                                   Padding(
                                     padding:
                                         const EdgeInsetsDirectional.fromSTEB(

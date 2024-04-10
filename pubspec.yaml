@@ -39,6 +39,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   provider: ^6.1.2
+  firebase_core: ^2.29.0
+  firebase_auth: ^4.19.1
   
 
 dev_dependencies:
@@ -60,10 +62,10 @@ flutter:
   fonts:
     - family: Tinos
       fonts:
-        - asset: fonts/Tinos/Tinos-Regular.ttf
-        - asset: fonts/Tinos/Tinos-Bold.ttf
-        - asset: fonts/Tinos/Tinos-Italic.ttf
-        - asset: fonts/Tinos/Tinos-BoldItalic.ttf
+        - asset: assets/fonts/Tinos/Tinos-Regular.ttf
+        - asset: assets/fonts/Tinos/Tinos-Bold.ttf
+        - asset: assets/fonts/Tinos/Tinos-Italic.ttf
+        - asset: assets/fonts/Tinos/Tinos-BoldItalic.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
