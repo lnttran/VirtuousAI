@@ -41,6 +41,11 @@ dependencies:
   provider: ^6.1.2
   firebase_core: ^2.29.0
   firebase_auth: ^4.19.1
+  cloud_firestore: ^4.16.1
+  flutter_dotenv: ^5.1.0
+  http: ^1.2.1
+  dart_openai: ^5.1.0
+  animated_text_kit: ^4.2.2
   
 
 dev_dependencies:
@@ -59,6 +64,9 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - .env
+    - assets/images/Robot.png
   fonts:
     - family: Tinos
       fonts:

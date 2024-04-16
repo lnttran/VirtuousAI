@@ -113,15 +113,15 @@ class _AboutUsPageWidgetState extends State<AboutUsPageWidget> {
                                     ),
                                   ),
                                 ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.asset(
-                                    'assets/images/IMG_1332.png',
-                                    width: 200,
-                                    height: 200,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                                // ClipRRect(
+                                //   borderRadius: BorderRadius.circular(8),
+                                //   child: Image.asset(
+                                //     'assets/images/IMG_1332.png',
+                                //     width: 200,
+                                //     height: 200,
+                                //     fit: BoxFit.cover,
+                                //   ),
+                                // ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 10, 0, 0),
@@ -133,15 +133,15 @@ class _AboutUsPageWidgetState extends State<AboutUsPageWidget> {
                                         .displaySmall,
                                   ),
                                 ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.asset(
-                                    'assets/images/Screenshot_2024-03-25_at_3.38.30_PM.png',
-                                    width: 200,
-                                    height: 200,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                                // ClipRRect(
+                                //   borderRadius: BorderRadius.circular(8),
+                                //   child: Image.asset(
+                                //     'assets/images/Screenshot_2024-03-25_at_3.38.30_PM.png',
+                                //     width: 200,
+                                //     height: 200,
+                                //     fit: BoxFit.cover,
+                                //   ),
+                                // ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 10, 0, 0),
@@ -153,15 +153,15 @@ class _AboutUsPageWidgetState extends State<AboutUsPageWidget> {
                                         .displaySmall,
                                   ),
                                 ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.asset(
-                                    'assets/images/Screenshot_2024-03-25_at_3.38.16_PM.png',
-                                    width: 200,
-                                    height: 200,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                                // ClipRRect(
+                                //   borderRadius: BorderRadius.circular(8),
+                                //   child: Image.asset(
+                                //     'assets/images/Screenshot_2024-03-25_at_3.38.16_PM.png',
+                                //     width: 200,
+                                //     height: 200,
+                                //     fit: BoxFit.cover,
+                                //   ),
+                                // ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 10, 0, 0),

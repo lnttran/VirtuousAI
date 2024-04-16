@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:virtuous_ai/app/authentication/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:virtuous_ai/app/authentication/login.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
+            onPrimary: const Color(0xFFFFFFFF),
             seedColor: const Color(0xFFF6FAD1),
             surface: const Color(0xFF90A955),
             outline: const Color(0xFF132A13),

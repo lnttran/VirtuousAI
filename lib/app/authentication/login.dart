@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:virtuous_ai/app/authentication/forgotPassPage.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:virtuous_ai/app/authentication/signup.dart';
 import 'package:virtuous_ai/app/components/APIs.dart';
 
 class LoginWidget extends StatefulWidget {
-  const LoginWidget({super.key});
+  final Function()? onTap;
+  const LoginWidget({super.key, required this.onTap});
 
   @override
   State<LoginWidget> createState() => _LoginWidgetState();
@@ -24,9 +26,13 @@ class _LoginWidgetState extends State<LoginWidget> {
         builder: (context) {
           return AlertDialog(
             backgroundColor: const Color(0xFFF6FAD1),
+            shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.circular(15.0), // Adjust the border radius here
+            ),
             content: Container(
               width: double.infinity,
-              height: double.maxFinite,
+              height: 30,
               child: Center(
                 child: Text(
                   errorMessage,
@@ -124,8 +130,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       padding:
                                           const EdgeInsetsDirectional.fromSTEB(
                                               0, 12, 0, 24),
-                                      child: Text(
-                                          'Let\'s get started by filling out the information below.',
+                                      child: Text('We have missed you.',
                                           textAlign: TextAlign.center,
                                           style: Theme.of(context)
                                               .textTheme
@@ -279,20 +284,20 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         textScaler:
                                             MediaQuery.of(context).textScaler,
                                         text: TextSpan(
-                                          text: 'Forgot password?',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headlineMedium,
-                                          recognizer: TapGestureRecognizer()
-                                            ..onTap = () {
-                                              // Navigate to the sign-up page here
-                                              Navigator.of(context)
-                                                  .push(MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const SignUpWidget(),
-                                              ));
-                                            },
-                                        ),
+                                            text: 'Forgot password?',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headlineMedium,
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+                                                // Navigate to the desired page
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const ForgotpassWidget()),
+                                                );
+                                              }),
                                       ),
                                     ),
                                   ),
@@ -300,15 +305,22 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     padding:
                                         const EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 16),
-                                    child: TextButton(
-                                      onPressed: signInWithEmailAndPassword,
-                                      style: TextButton.styleFrom(
-                                        backgroundColor: const Color(
-                                            0xFF132A13), // Change the button color as needed
-                                      ),
-                                      child: const Text(
-                                        'Sign In',
-                                        style: TextStyle(color: Colors.white),
+                                    child: SizedBox(
+                                      width: 100,
+                                      height: 45,
+                                      child: TextButton(
+                                        onPressed: signInWithEmailAndPassword,
+                                        style: TextButton.styleFrom(
+                                          backgroundColor: const Color(
+                                              0xFF132A13), // Change the button color as needed
+                                        ),
+                                        child: Text(
+                                          'Log In',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headlineLarge
+                                              ?.copyWith(color: Colors.white),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -323,10 +335,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         children: [
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(0, 0),
+                                                const AlignmentDirectional(
+                                                    0, 0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 12, 0, 12),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(0, 12, 0, 12),
                                               child: Container(
                                                 width: double.infinity,
                                                 height: 2,
@@ -490,25 +504,18 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               text: 'Don\'t have an account? ',
                                             ),
                                             TextSpan(
-                                              text: 'Sign Up ',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headlineMedium
-                                                  ?.copyWith(
-                                                      color: const Color(
-                                                          0xFF132A13),
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                              recognizer: TapGestureRecognizer()
-                                                ..onTap = () {
-                                                  // Navigate to the sign-up page here
-                                                  Navigator.of(context)
-                                                      .push(MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const SignUpWidget(),
-                                                  ));
-                                                },
-                                            ),
+                                                text: 'Sign Up ',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headlineMedium
+                                                    ?.copyWith(
+                                                        color: const Color(
+                                                            0xFF132A13),
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                recognizer:
+                                                    TapGestureRecognizer()
+                                                      ..onTap = widget.onTap),
                                             const TextSpan(
                                               text: 'here',
                                             )

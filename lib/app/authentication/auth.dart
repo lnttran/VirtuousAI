@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:virtuous_ai/app/authentication/login.dart';
+import 'package:virtuous_ai/app/authentication/loginOrSignup.dart';
+import 'package:virtuous_ai/app/components/navbar.dart';
 import 'package:virtuous_ai/app/home/aboutUs.dart';
 
 class Auth extends StatelessWidget {
@@ -13,9 +14,9 @@ class Auth extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return const AboutUsPageWidget();
+          return const NavBar();
         } else {
-          return const LoginWidget();
+          return const loginOrSignup();
         }
       },
     ));
