@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ForgotpassWidget extends StatefulWidget {
@@ -12,7 +13,44 @@ class _ForgotpassWidgetState extends State<ForgotpassWidget> {
 
   @override
   void dispose() {
+    emailController.dispose();
     super.dispose();
+  }
+
+  void showErrorMessage(String errorMessage) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: const Color(0xFFF6FAD1),
+            shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.circular(15.0), // Adjust the border radius here
+            ),
+            content: Container(
+              width: double.infinity,
+              height: 40,
+              child: Center(
+                child: Text(
+                  errorMessage,
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
+  Future resetPassword() async {
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: emailController.text.trim());
+      showErrorMessage('Request email has sent! Please check your email.');
+      emailController.clear();
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      showErrorMessage(e.message.toString());
+    }
   }
 
   @override
@@ -45,10 +83,10 @@ class _ForgotpassWidgetState extends State<ForgotpassWidget> {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 40, 0, 20),
                 child: Text(
                   'Forgot Password',
                   style: Theme.of(context).textTheme.displayLarge,
@@ -62,11 +100,12 @@ class _ForgotpassWidgetState extends State<ForgotpassWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 20, 16, 16),
                 child: Container(
                   width: double.infinity,
                   child: TextFormField(
                     controller: emailController,
+                    autofocus: true,
                     autofillHints: const [AutofillHints.email],
                     obscureText: false,
                     decoration: InputDecoration(
@@ -102,46 +141,32 @@ class _ForgotpassWidgetState extends State<ForgotpassWidget> {
                       ),
                       filled: true,
                       fillColor: const Color(0xFFF6FAD1),
-                      contentPadding:
-                          const EdgeInsetsDirectional.fromSTEB(24, 24, 20, 24),
                     ),
                     style: Theme.of(context).textTheme.headlineLarge,
-                    maxLines: null,
+                    minLines: null,
                     keyboardType: TextInputType.emailAddress,
-                    // cursorColor: FlutterFlowTheme.of(context).primary,
-                    // validator: _model.emailAddressTextControllerValidator
-                    //     .asValidator(context),
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                 child: SizedBox(
-                  width: 100,
+                  width: 150,
                   height: 45,
                   child: TextButton(
                     onPressed: () async {
                       if (emailController.text.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Email required!',
-                            ),
-                          ),
-                        );
+                        showErrorMessage('Email required');
                         return;
                       }
-                      // await authManager.resetPassword(
-                      //   email: _model.emailAddressTextController.text,
-                      //   context: context,
-                      // );
+                      resetPassword();
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: const Color(
                           0xFF132A13), // Change the button color as needed
                     ),
                     child: Text(
-                      'Log In',
+                      'Send Request',
                       style: Theme.of(context)
                           .textTheme
                           .headlineLarge

@@ -63,7 +63,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           firstName: firstNameController.text,
           lastName: lastNameController.text,
         );
-        Navigator.pop(context);
+        if (mounted) {
+          Navigator.pop(context);
+        }
       } else {
         Navigator.pop(context);
         showErrorMessage("Passwords do not match.");
@@ -75,6 +77,17 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         showErrorMessage(e.code);
       }
     }
+  }
+
+  @override
+  void dispose() {
+    // Dispose of the controllers when the state is disposed
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    super.dispose();
   }
 
   @override

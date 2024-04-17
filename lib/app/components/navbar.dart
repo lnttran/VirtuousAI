@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:virtuous_ai/app/ai_query/ai_query.dart';
+import 'package:virtuous_ai/app/ai_query/ethicalQuestionEx.dart';
 import 'package:virtuous_ai/app/home/aboutUs.dart';
 
 class NavBar extends StatefulWidget {
@@ -16,10 +17,7 @@ class _NavBarState extends State<NavBar> {
   static const List<Widget> _widgetOptions = <Widget>[
     AboutUsPageWidget(),
     AIQueryWidget(),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    EthicalQuestionExWidget(),
   ];
 
   void _onItemTapped(int index) {

@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-            onPrimary: const Color(0xFFFFFFFF),
+            onPrimary: const Color.fromARGB(255, 248, 250, 232),
             seedColor: const Color(0xFFF6FAD1),
             surface: const Color(0xFF90A955),
             outline: const Color(0xFF132A13),
