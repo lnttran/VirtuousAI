@@ -69,6 +69,16 @@ class EthicalQuestions {
           'Ethical use of AI requires careful consideration of its potential benefits and risks, ensuring transparency, accountability, and fairness in its design, implementation, and regulation. Balancing automation with human oversight is crucial to address concerns about bias and accountability.',
       icon: Icons.directions_car_rounded,
     ),
+    EthicalQuestion(
+      question: 'Should the death penalty be abolished?',
+      forArg:
+          'Abolishing the death penalty aligns with principles of human rights and justice, eliminating the risk of executing innocent individuals and acknowledging the fallibility of the legal system. It promotes a more humane approach to criminal justice, focusing on rehabilitation and reintegration rather than retribution and vengeance. Additionally, the death penalty disproportionately affects marginalized communities and fails to deter crime effectively, making its abolition a necessary step towards a fairer and more equitable society.',
+      agaisntArg:
+          'Retaining the death penalty serves as a deterrent against heinous crimes, providing a sense of justice for victims and their families while maintaining societal order. Capital punishment offers closure and a form of retribution for the most severe offenses, sending a clear message about the consequences of committing violent acts. Furthermore, it ensures that dangerous criminals are permanently removed from society, preventing future harm and safeguarding public safety.',
+      neutralArg:
+          'The debate over the death penalty involves complex ethical, legal, and practical considerations. While proponents argue for its deterrent effect and retributive justice, opponents raise concerns about wrongful convictions, arbitrariness, and discrimination within the criminal justice system. A neutral stance emphasizes the need for comprehensive evaluation and reforms aimed at addressing systemic flaws while respecting diverse viewpoints and the inherent dignity of all individuals involved, both victims and perpetrators.',
+      icon: Icons.person,
+    ),
     // Add more questions here as needed
   ];
 }

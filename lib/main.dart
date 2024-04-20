@@ -47,14 +47,14 @@ class MyApp extends StatelessWidget {
             headlineLarge: TextStyle(
               fontFamily: 'Tinos',
               color: Color(0xFF14181B),
-              fontSize: 16,
+              fontSize: 18,
               letterSpacing: 0,
               fontWeight: FontWeight.w500,
             ),
             headlineMedium: TextStyle(
               fontFamily: 'Tinos',
               color: Color(0xFF57636C),
-              fontSize: 14,
+              fontSize: 16,
               letterSpacing: 0,
               fontWeight: FontWeight.w500,
             )),

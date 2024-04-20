@@ -56,7 +56,7 @@ class _ForgotpassWidgetState extends State<ForgotpassWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 248, 250, 232),
       appBar: AppBar(
         backgroundColor: const Color(0xFF132A13),
         automaticallyImplyLeading: false,

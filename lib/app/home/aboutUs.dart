@@ -271,25 +271,6 @@ class _AboutUsPageWidgetState extends State<AboutUsPageWidget> {
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                   ),
-                  TextButton(
-                    onPressed: () async {
-                      try {
-                        await FirebaseAuth.instance.signOut();
-                        // Navigate to the login page or any other desired page after logout
-                        // Example: Navigator.of(context).pushReplacementNamed('/login');
-                      } catch (e) {
-                        print('Error signing out: $e');
-                      }
-                    },
-                    style: TextButton.styleFrom(
-                      backgroundColor:
-                          Colors.red, // Change the button color as needed
-                    ),
-                    child: const Text(
-                      'Logout',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )
                 ],
               ),
             ],
